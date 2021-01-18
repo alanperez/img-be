@@ -1,3 +1,5 @@
+const userRouter = require('./api/users/userRouter')
+const imageRouter = require('./api/imgs/imageRouter')
 const express = require('express');
 
 const server = express();
@@ -14,6 +16,8 @@ const corsOptions = {
   server.use(helmet());
   server.use(cors(corsOptions));
 
+  server.use('/users',userRouter);
+  server.use('/images', imageRouter);
 
   server.get('/', (req,res) => {
     try {
