@@ -1,6 +1,6 @@
-import express from 'express';
-import restrict from '../auth/restrict'
-import {retrieveUsers, userViewOwnImages} from './userController'
+const express = require('express')
+const restrict = require('../auth/restrict')
+const {retrieveUsers, userViewOwnImages, loginUser, registerUser} = require('./userController')
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
-import generateToken from '../auth/generateToken'
-import Users from './userModel'
-import Images from '../imgs/imageModel'
-import bcrypt from 'bcrypt'
+const generateToken = require('../auth/generateToken')
+const Users = require('./userModel')
+const Images = require('../imgs/imageModel')
+const bcrypt = require('bcrypt')
 
 
 
