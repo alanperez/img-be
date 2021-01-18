@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 const db = require('../../data/dbConig')
-const Images = require('./imageModel')
-const { retrieveJoinedImages,retrieveImageByID } = require('./imageController')
-const {verifyImageOwner} = require('../auth/verifyCheck')
-const restrict = require('../auth/restrict')
+import Images from './imageModel'
+import { retrieveJoinedImages,retrieveImageByID } from './imageController'
+import {verifyImageOwner} from '../auth/verifyCheck'
+import restrict from '../../config/restrict'
 const router = express.Router();
 
 // view all images
