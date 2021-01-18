@@ -49,7 +49,13 @@ function findImageByUser(imgid) {
     const response = await db('images').insert(file);
     return response;
   }
+
+  async function insertImages(image) {
+    const response = await db('images').insert(image);
+    return response;
+  }
 module.exports = {
+  insertImages,
   uploadImage,
     lookByID,
     getAll,
