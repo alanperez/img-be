@@ -1,6 +1,7 @@
 import express from 'express';
-import restrict from '../auth/restrict'
+import restrict from '../../config/restrict'
 import upload from '../../utils/multer';
+import Images from '../imgs/imageModel'
 import {registerUser, loginUser, userViewOwnImages, userViewImagesByID, retrieveUsers} from './userController'
 const router = express.Router();
 
@@ -25,18 +26,19 @@ router.post('/login', loginUser)
 
 
 // Authenticated User can upload an image
-router.post('/image/upload', restrict, upload.single("photos"), function(req, res, next) {
+router.post('/add', restrict, upload.single("photos"), function(req, res, next) {
+  console.log(req.file)
   let user = req.decoded
-  console.log('console the fucking user', user)
-  console.log(req.file);
+  console.log('console', user)
+  console.log('CLG THE REQ FILE', req.file);
   try {
     if(req.file) {
-      Images.insertProblem({
+      Images.insertImages({
          image_url: req.file.path,
          tag: req.body.tag,
          user_id: user.id
       }).then((image) => {
-        res.status(200).json({message:'iot worked', image})
+        res.status(200).json({message:'iot worked', images:image})
         next()
       })
     }
