@@ -13,12 +13,14 @@
 
   - User Model
     ```
+      id: 
       username - string
       password - string(hashed)
     ```
   - Image Model
     ```
-      user_id - int
+      id
+      user_id - FK to user.id
       image_url - string
       tag - string
     ```
