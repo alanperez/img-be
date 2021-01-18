@@ -1,4 +1,4 @@
-import generateToken from '../auth/generateToken'
+import generateToken from '../../config/generateToken'
 import Users from './userModel'
 import Images from '../imgs/imageModel'
 import bcrypt from 'bcrypt'
