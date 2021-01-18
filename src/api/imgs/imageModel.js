@@ -27,11 +27,23 @@ function getAll() {
       .select(JoinFields)
       .join('users', 'users.id', 'images.user_id');
   }
+function remove(id){
+    return db('images')
+    .where({ id })
+    .del();
+}
+
+function findUser(id) {
+    return db("images")
+      .where({ id })
+  }
 
 module.exports = {
     findBy,
     lookByID,
     getAll,
-    getBy
+    getBy,
+    findUser,
+    remove
 
 }
