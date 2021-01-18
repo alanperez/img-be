@@ -27,7 +27,8 @@ router.get('/:id', retrieveImageByID)
   
   });
 
-
+// Only Users have access
+// Can view their own specfic image
   router.get(
     "/profile/:imgid",
     restrict,

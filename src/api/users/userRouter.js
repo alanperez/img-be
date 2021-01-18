@@ -26,7 +26,7 @@ router.post('/login', loginUser)
 
 
 // Authenticated User can upload an image
-router.post('/add', restrict, upload.single("photos"), function(req, res, next) {
+router.post('/image/upload', restrict, upload.single("photos"), function(req, res, next) {
   console.log(req.file)
   let user = req.decoded
   console.log('console', user)
