@@ -31,7 +31,7 @@
     - Registration & Login
     - Upload Single Image
     - Delete Images
-# Technologies
+#### Images Routes
 
 | Method | Endpoint                  | Access Control | Description                                           |
 | ------ | ------------------------- | -------------- | ----------------------------------------------------- |
@@ -40,7 +40,7 @@
 | GET    | `/images/view/:id`          | User         | Retrieves list of images that a user has posted. |
 | DELETE | `/images/:id`          | Users         | Delete their own image                                     |
 
-#### Problem Routes
+#### Users Routes
 
 | Method | Endpoint               | Access Control | Description                                             |
 | ------ | ---------------------- | -------------- | ------------------------------------------------------- |
