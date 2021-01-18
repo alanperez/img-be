@@ -1,7 +1,7 @@
-const generateToken = require('../auth/generateToken')
-const Users = require('./userModel')
-const Images = require('../imgs/imageModel')
-const bcrypt = require('bcrypt')
+import generateToken from '../auth/generateToken'
+import Users from './userModel'
+import Images from '../imgs/imageModel'
+import bcrypt from 'bcrypt'
 
 
 
@@ -50,32 +50,48 @@ async function loginUser(req,res) {
       });
 }
 
+async function userViewOwnImages(req,res) {
+  const username = req.decoded.username
+  Images.lookByID(req.decoded.id)
+  // console.log('clg req params iddd', req.params.id)
+  .then(image => {
+    // console.log('clg da img.d', image)
+    res.status(200).json(image);
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({
+      message: "There was an error while retreiving the parent's children. Please try again later."
+    })
+  })
+}
+async function userViewImagesByID(req,res) {
+  // const { id } = req.params;
+  const username = req.decoded.username
+  Images.getBy(req.params.id)
+  // console.log('clg req params iddd', req.params.id)
+  .then(image => {
+    // console.log('clg da img.d', image)
+    res.status(200).json(image);
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({
+      message: "There was an error while retreiving the parent's children. Please try again later."
+    })
+  })
+}
 
 // Retrieves all Users ( username & id)
 async function retrieveUsers(req,res) {
-    Users.findAll()
-    .then((users) => {
-        res.status(200).json(users);
-    })
-    .catch((err) => {
-        console.log(err);
-        res.status(500).json({ message: err.message })
-    })
-  }
-  
-  async function userViewOwnImages(req,res) {
-    const username = req.decoded.username
-    Images.lookByID(req.decoded.id)
-    // console.log('clg req params iddd', req.params.id)
-    .then(image => {
-      // console.log('clg da img.d', image)
-      res.status(200).json(image);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({
-        message: "There was an error while retreiving the parent's children. Please try again later."
-      })
-    })
-  }
-module.exports = { loginUser,registerUser,retrieveUsers, userViewOwnImages }
+  Users.findAll()
+  .then((users) => {
+      res.status(200).json(users);
+  })
+  .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: err.message })
+  })
+}
+
+module.exports = { registerUser, loginUser, userViewOwnImages,userViewImagesByID, retrieveUsers }

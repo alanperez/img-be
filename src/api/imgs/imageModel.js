@@ -37,13 +37,25 @@ function findUser(id) {
     return db("images")
       .where({ id })
   }
+function findImageByUser(imgid) {
+    return db
+    .select("user_id as imageOwnerID")
+    .from("images")
+    .where({ id: imgid })
+    .first();
+  }
 
+  async function uploadImage(file) {
+    const response = await db('images').insert(file);
+    return response;
+  }
 module.exports = {
-    findBy,
+  uploadImage,
     lookByID,
     getAll,
     getBy,
     findUser,
+    findImageByUser,
     remove
 
 }

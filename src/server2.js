@@ -1,7 +1,6 @@
-const userRouter = require('./api/users/userRouter')
-const imageRouter = require('./api/imgs/imageRouter')
-const express = require('express');
-
+import express from 'express';
+import userRouter from './api/users/userRouter';
+import imageRouter from './api/imgs/imageRouter';
 const server = express();
 const cors = require('cors');
 const helmet = require('helmet');
@@ -16,7 +15,7 @@ const corsOptions = {
   server.use(helmet());
   server.use(cors(corsOptions));
 
-  server.use('/users',userRouter);
+  server.use('/users', userRouter);
   server.use('/images', imageRouter);
 
   server.get('/', (req,res) => {
@@ -27,7 +26,7 @@ const corsOptions = {
       }
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 9000;
 server.listen(port, () => {
   const serverRunMsg = `Server is active and listening on http://127.0.0.1:${port}`;
   console.log((serverRunMsg));
