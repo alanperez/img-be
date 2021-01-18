@@ -1,0 +1,35 @@
+{
+  "name": "image-repo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alanperez/img-be.git",
+  "author": "<alanperez9six@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "dev": "nodemon --exec yarn restart",
+    "restart": "rm -rf dist && yarn build && yarn start",
+    "start": "node dist/server.js",
+    "test": "cross-env NODE_ENV=development jest --watchAll --runInBand jest",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint --fix .",
+    "format": "npx prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\""
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.3.1",
+    "knex": "^0.21.16",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.7"
+  }
+}
