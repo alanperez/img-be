@@ -4,7 +4,7 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      database: 'shopifybe',
+      database: 'img-be',
       user: 'user',
       password: 'password',
       host: 'localhost',
