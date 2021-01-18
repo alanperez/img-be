@@ -11,10 +11,13 @@ const JoinFields = [
 const findBy = (filter) => {
     return db("users").where(filter);
   }
-const insertUser = async (user) => {
-    const [id] = await db('users').insert(user, 'id');
-    return getById(id)
-}
+function getBy(id) {
+    return db('images')
+      .select(JoinFields)
+      .join('users', 'users.id', 'images.user_id')
+      .where('images.id', id)
+      .first();
+  }
 function lookByID(user_id) {
     return db('images').where({user_id})
   }
@@ -27,8 +30,8 @@ function getAll() {
 
 module.exports = {
     findBy,
-    insertUser,
     lookByID,
-    getAll
+    getAll,
+    getBy
 
 }
