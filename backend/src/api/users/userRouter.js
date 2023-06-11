@@ -1,3 +1,4 @@
+import axios from 'axios';
 import express from 'express';
 import restrict from '../../config/restrict'
 import upload from '../../utils/multer';
@@ -37,8 +38,15 @@ router.post('/image/upload', restrict, upload.single("photos"), function(req, re
          image_url: req.file.path,
          tag: req.body.tag,
          user_id: user.id
-      }).then((image) => {
-        res.status(200).json({message:'iot worked', images:image})
+      }).then( async (image) => {
+        // after image has been uploaded, send it to the ML service for processing
+        const response = await axios.post('http://localhost:8000/process', {
+          // URL of the uploaded image
+          url: req.file.path,
+        })
+        console.log('result from ML service', response.data)
+        // res.status(200).json({message:'iot worked', images:image})
+        res.status(200).json({message:'successfully processed image ', images:image, result: response.data})
         next()
       })
     }
