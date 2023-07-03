@@ -40,7 +40,7 @@ router.post('/image/upload', restrict, upload.single("photos"), function(req, re
          user_id: user.id
       }).then( async (image) => {
         // after image has been uploaded, send it to the ML service for processing
-        const response = await axios.post('http://localhost:8000/process', {
+        const response = await axios.post('http://localhost:8000/process' , {
           // URL of the uploaded image
           url: req.file.path,
         })
