@@ -1,13 +1,13 @@
 require("dotenv").config();
 module.exports = {
   development: {
-    client: "mysql",
+    client: "pg",
     connection: {
-      database: "img-be",
-      user: "root",
+      database: "2023-img-be",
+      user: "postgres",
       password: "password",
       host: "localhost",
-      port: 3306,
+      port: 5432,
     },
     migrations: { directory: "src/data/migrations" },
     seeds: { directory: "src/data/seeds" },
@@ -17,7 +17,7 @@ module.exports = {
     },
   },
   production: {
-    client: "mysql",
+    client: "pg",
     connection: {
       database: process.env.DB_DATABASE,
       user: process.env.DB_USERNAME,
